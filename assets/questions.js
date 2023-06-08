@@ -1,3 +1,4 @@
+const testBtn = document.getElementById("start-test-btn");
 const testQuestions = [
   {
     question:
@@ -60,30 +61,23 @@ const testQuestions = [
   {
     question:
       "What is the output of the following code: console.log(“5” == 5);",
-    options: ["a) true", "b) false", "c) Error", "d) NaN"],
-    answer: "a", //true
+    options: ["true", "false", "Error", "NaN"],
+    answer: 0, //true
   },
 ];
-function displayQuestions() {
-  let correctAnswers = 0;
-  for (let i = 0; i < testQuestions.length; i++) {
-    let userAnswer = prompt(
-      testQuestions[i].question + "\n" + testQuestions[i].options.join("\n")
-    );
-    if (userAnswer === testQuestions[i].answer) {
-      alert("Correct!");
-      correctAnswers++;
-    } else {
-      alert("Incorrect! The correct answer is " + testQuestions[i].answer);
-    }
-  }
-  alert(
-    "You got " +
-      correctAnswers +
-      " out of " +
-      testQuestions.length +
-      " questions correct."
-  );
-}
+let currentIndex = 0;
+function getNextQuestion() {
+  const currentQuestion = testQuestions[currentIndex];
+  currentIndex++;
 
-displayQuestions();
+  const questionsContainer = document.getElementById("questions-container");
+
+  const questionTextEl = document.createElement("p");
+  questionTextEl.textContent = currentQuestion.question;
+  questionsContainer.appendChild(questionTextEl);
+
+  return currentQuestion;
+}
+testBtn.addEventListener("click", function () {
+  getNextQuestion();
+});
