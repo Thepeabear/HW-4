@@ -1,4 +1,4 @@
-const testBtn = document.getElementById("start-test-btn");
+const testBtn = document.getElementById("test-btn");
 const testQuestions = [
   {
     question:
@@ -65,6 +65,9 @@ const testQuestions = [
     answer: 0, //true
   },
 ];
+testBtn.addEventListener("click", function () {
+  getNextQuestion();
+});
 let currentIndex = 0;
 function getNextQuestion() {
   const currentQuestion = testQuestions[currentIndex];
@@ -78,6 +81,3 @@ function getNextQuestion() {
 
   return currentQuestion;
 }
-testBtn.addEventListener("click", function () {
-  getNextQuestion();
-});
