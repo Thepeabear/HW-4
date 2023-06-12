@@ -1,7 +1,7 @@
 const timerEl = document.querySelector("#timer");
 const scoresEl = document.querySelector("#scores");
-const currentScore = document.querySelector("#currentScore");
 const testBtn = document.getElementById("test-btn");
+const currentScore = document.querySelector("#currentScore");
 const questionsContainer = document.getElementById("questions-container");
 const choicesContainer = document.getElementById("choices-container");
 const answersContainer = document.getElementById("answers-container");
@@ -36,14 +36,19 @@ function getNextQuestion() {
   answerInputEl.setAttribute("placeholder", "Enter your answer here...");
   answersContainer.appendChild(answerInputEl);
 
-  currentScore.innerText = score;
+  currentScore.textContent = "current Score" + score;
 
   function checkAnswer(chosenAnswer) {
     const correctAnswer = currentQuestion.correctAnswer;
+    let score = "0";
     if (chosenAnswer === currentQuestion.correctAnswer) {
       score++;
     } else {
       score--;
+    }
+
+    if (score < 0) {
+      score = 0;
     }
 
     const resultMessageEl = document.createElement("p");
