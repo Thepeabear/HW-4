@@ -3,7 +3,7 @@ const testQuestions = [
     question:
       "#1: What is the output of the following code:\n\nvar x = 5;\n\nvar y = “5”;\n\nconsole.log(x == y);",
     choices: ["a): true", "b): false", "c): undefined", "d): Error"],
-    answers: 0, // Index of the correct answer within the choices array
+    answers: "A", // Index of the correct answer within the choices array
   },
   {
     question: "#2: What does the “this” keyword refer to in JavaScript?",
@@ -13,7 +13,7 @@ const testQuestions = [
       "c): The object that the function belongs to",
       "d): The parent object of the current object",
     ],
-    answer: 2, // Index of the correct answer within the choices array
+    answer: "C", // Index of the correct answer within the choices array
   },
   {
     question: "#3: What is the correct syntax for a “for” loop in JavaScript?",
@@ -23,7 +23,7 @@ const testQuestions = [
       "c): for (var i = 5; i > 0; i–)",
       "d): for (i = 5; i > 0; i–)",
     ],
-    answer: 0, // Index of the correct answer within the choices array
+    answer: "B", // Index of the correct answer within the choices array
   },
   {
     question:
@@ -34,12 +34,12 @@ const testQuestions = [
       "c):“===” performs a strict comparison, while “==” performs a loose comparison",
       "d):They both perform the same type of comparison",
     ],
-    answer: 2, // Index of the correct answer within the choices array
+    answer: "C", // Index of the correct answer within the choices array
   },
   {
     question: "#5: Which of the following is not a data type in JavaScript?",
     choices: ["a):Boolean", "b):String", "c):Number", "d):Character"],
-    answer: 3, // Index of the correct answer within the choices array
+    answer: "D", // Index of the correct answer within the choices array
   },
   {
     question:
@@ -50,18 +50,18 @@ const testQuestions = [
       "c):() => {}",
       "d):function = {}",
     ],
-    answer: 3, // Index of the correct answer within the choices array
+    answer: "D", // Index of the correct answer within the choices array
   },
   {
     question: "#7: Which of the following is not a loop in JavaScript?",
     choices: ["a):for", "b):while", "c):do...while", "d):next"],
-    answer: 3, // Index of the correct answer within the choices array
+    answer: "D", // Index of the correct answer within the choices array
   },
   {
     question:
       "#8: What is the output of the following code: console.log(“5” == 5);",
     options: ["a):true", "b):false", "c):Error", "d):NaN"],
-    answer: 0, //true
+    answer: "A", //true
   },
   {
     question:

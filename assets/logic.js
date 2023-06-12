@@ -5,7 +5,7 @@ const currentScore = document.querySelector("#currentScore");
 const questionsContainer = document.getElementById("questions-container");
 const choicesContainer = document.getElementById("choices-container");
 const answersContainer = document.getElementById("answers-container");
-
+const choicesEl = document.getElementById("choices");
 testBtn.addEventListener("click", function () {
   getNextQuestion();
 });
@@ -15,21 +15,23 @@ let score = 0;
 
 function getNextQuestion() {
   const currentQuestion = testQuestions[currentIndex];
+  console.log("currentQuestion.answers:", currentQuestion.answers);
 
   const questionTextEl = document.createElement("p");
-  questionTextEl.textContent = "Question: " + currentQuestion.question;
+  questionTextEl.textContent = currentQuestion.question;
   questionsContainer.appendChild(questionTextEl);
-
-  const choicesContainer = document.createElement("div");
-  for (let i = 0; i < currentQuestion.answers.length; i++) {
+  choicesEl.innerHTML = "";
+  const newChoicesContainer = document.createElement("div");
+  for (let i = 0; i < currentQuestion.choices.length; i++) {
     const choiceEl = document.createElement("button");
     choiceEl.innerText = currentQuestion.answers[i];
     choiceEl.addEventListener("click", function () {
       checkAnswer(choiceEl.innerText);
     });
-    choicesContainer.appendChild(choiceEl);
+    newChoicesContainer.appendChild(choiceEl);
   }
-  questionsContainer.appendChild(choicesContainer);
+
+  choicesContainer.appendChild(newChoicesContainer);
 
   const answerInputEl = document.createElement("input");
   answerInputEl.setAttribute("type", "text");
@@ -38,10 +40,10 @@ function getNextQuestion() {
 
   currentScore.textContent = "current Score" + score;
 
-  function checkAnswer(chosenAnswer) {
+  function checkAnswer(answerInputEl) {
     const correctAnswer = currentQuestion.correctAnswer;
     let score = "0";
-    if (chosenAnswer === currentQuestion.correctAnswer) {
+    if (answerInputEl === currentQuestion.correctAnswer) {
       score++;
     } else {
       score--;
@@ -53,7 +55,7 @@ function getNextQuestion() {
 
     const resultMessageEl = document.createElement("p");
     resultMessageEl.textContent =
-      chosenAnswer === correctAnswer ? "Correct!" : "Wrong!";
+      answerInputEl === correctAnswer ? "Correct!" : "Wrong!";
     questionsContainer.appendChild(resultMessageEl);
 
     removeQuestion();
@@ -62,19 +64,16 @@ function getNextQuestion() {
   function removeQuestion() {
     currentIndex++;
 
-    // Disable the input field to prevent further input
     answerInputEl.disabled = true;
 
     setTimeout(() => {
       questionsContainer.removeChild(questionTextEl);
-      questionsContainer.removeChild(choicesContainer);
+      choicesContainer.removeChild(newChoicesContainer);
       answersContainer.removeChild(answerInputEl);
 
-      // Display the next question if more are available
       if (currentIndex < testQuestions.length) {
         getNextQuestion();
       } else {
-        // Display the end message if all questions have been answered
         const endMessageEl = document.createElement("p");
         endMessageEl.textContent = "All questions answered!";
         questionsContainer.appendChild(endMessageEl);
@@ -87,7 +86,9 @@ function getNextQuestion() {
       const userAnswer = answerInputEl.value.trim().toLowerCase();
 
       // Check if the user's answer is correct or wrong
-      const isCorrect = currentQuestion.answers.includes(userAnswer);
+      const isCorrect =
+        Array.isArray(currentQuestion.answers) &&
+        currentQuestion.answers.includes(userAnswer);
 
       // Display the result message to the user
       const resultMessageEl = document.createElement("p");
