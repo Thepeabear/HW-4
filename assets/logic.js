@@ -5,7 +5,6 @@ const currentScore = document.querySelector("#currentScore");
 const questionsContainer = document.getElementById("questions-container");
 const choicesContainer = document.getElementById("choices-container");
 const answersContainer = document.getElementById("answers-container");
-const choicesEl = document.getElementById("choices");
 testBtn.addEventListener("click", function () {
   getNextQuestion();
 });
@@ -15,19 +14,20 @@ let score = 0;
 
 function getNextQuestion() {
   const currentQuestion = testQuestions[currentIndex];
-  console.log("currentQuestion.answers:", currentQuestion.answers);
+  console.log("currentQuestion", currentQuestion);
 
   const questionTextEl = document.createElement("p");
   questionTextEl.textContent = currentQuestion.question;
   questionsContainer.appendChild(questionTextEl);
-  choicesEl.innerHTML = "";
+
   const newChoicesContainer = document.createElement("div");
   for (let i = 0; i < currentQuestion.choices.length; i++) {
     const choiceEl = document.createElement("button");
-    choiceEl.innerText = currentQuestion.answers[i];
+    choiceEl.innerText = currentQuestion.choices[i];
     choiceEl.addEventListener("click", function () {
       checkAnswer(choiceEl.innerText);
     });
+
     newChoicesContainer.appendChild(choiceEl);
   }
 
@@ -41,7 +41,7 @@ function getNextQuestion() {
   currentScore.textContent = "current Score" + score;
 
   function checkAnswer(answerInputEl) {
-    const correctAnswer = currentQuestion.correctAnswer;
+    const correctAnswer = currentQuestion.answers;
     let score = "0";
     if (answerInputEl === currentQuestion.correctAnswer) {
       score++;
@@ -81,23 +81,23 @@ function getNextQuestion() {
     }, 2000);
   }
 
-  answerInputEl.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-      const userAnswer = answerInputEl.value.trim().toLowerCase();
+  //answerInputEl.addEventListener("keypress", function (event) {
+  //if (event.key === "Enter") {
+  //const userAnswer = answerInputEl.value.trim().toLowerCase();
 
-      // Check if the user's answer is correct or wrong
-      const isCorrect =
-        Array.isArray(currentQuestion.answers) &&
-        currentQuestion.answers.includes(userAnswer);
+  // Check if the user's answer is correct or wrong
+  //const isCorrect =
+  //Array.isArray(currentQuestion.answers) &&
+  //currentQuestion.answers.includes(userAnswer);
 
-      // Display the result message to the user
-      const resultMessageEl = document.createElement("p");
-      resultMessageEl.textContent = isCorrect ? "Correct!" : "Wrong!";
-      questionsContainer.appendChild(resultMessageEl);
+  // Display the result message to the user
+  //const resultMessageEl = document.createElement("p");
+  //resultMessageEl.textContent = isCorrect ? "Correct!" : "Wrong!";
+  //questionsContainer.appendChild(resultMessageEl);
 
-      removeQuestion();
-    }
-  });
+  //removeQuestion();
+  //}
+  //});
 }
 
 function startTimer(duration) {

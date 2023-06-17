@@ -60,13 +60,13 @@ const testQuestions = [
   {
     question:
       "#8: What is the output of the following code: console.log(“5” == 5);",
-    options: ["a):true", "b):false", "c):Error", "d):NaN"],
+    choices: ["a):true", "b):false", "c):Error", "d):NaN"],
     answer: "A", //true
   },
   {
     question:
       "#9: What is the difference between “let” and “const” keywords in JavaScript?",
-    options: [
+    choices: [
       "a): They are interchangeable",
       "b): “let” variables cannot be reassigned, while “const” variables can",
       "c): “const” variables cannot be reassigned, while “let” variables can",
@@ -77,13 +77,13 @@ const testQuestions = [
   {
     question:
       "#10: Which of the following is not a comparison operator in JavaScript?",
-    options: ["a) ==", "b) ===", "c) !=", "d) =<"],
+    choices: ["a) ==", "b) ===", "c) !=", "d) =<"],
     answer: "d",
   },
   {
     question:
       "#11: What is the output of the following code?\nvar x = 5;\nconsole.log(x++);",
-    options: ["a) 4", "b) 5", "c) 6", "d) Error"],
+    choices: ["a) 4", "b) 5", "c) 6", "d) Error"],
     answer: "b",
   },
 ];
